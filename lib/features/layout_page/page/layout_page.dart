@@ -27,28 +27,40 @@ class _LayoutViewState extends State<LayoutView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screans[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentIndex,
-          onTap: (index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/image/Home_ icon.png')),
-                label: 'HOME'),
-            BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/image/search_icon.png')),
-                label: 'SEARCH'),
-            BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/image/Browse_icon.png')),
-                label: 'BROWSE'),
-            BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/image/whatch_logo.png')),
-                label: 'WATCHLIST'),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.8),
+              spreadRadius: 5,
+              blurRadius: 12,
+              offset: Offset(0, 1), // changes the shadow direction
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+            currentIndex: currentIndex,
+            onTap: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('assets/image/Home_ icon.png')),
+                  label: 'HOME'),
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('assets/image/search_icon.png')),
+                  label: 'SEARCH'),
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('assets/image/Browse_icon.png')),
+                  label: 'BROWSE'),
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('assets/image/whatch_logo.png')),
+                  label: 'WATCHLIST'),
 
-          ]),
+            ]),
+      ),
     );
   }
 }

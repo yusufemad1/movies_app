@@ -16,7 +16,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     Timer(
-      Duration(seconds: 2),
+      Duration(seconds: 4),
       () {
         Navigator.pushReplacementNamed(context, LayoutView.routeName);
       },
