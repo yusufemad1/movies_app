@@ -34,6 +34,9 @@ class WatchListPage extends StatelessWidget {
             WatchListWidget(),
             WatchListWidget(),
             WatchListWidget(),
+            WatchListWidget(),
+            WatchListWidget(),
+
 
 
           ],
