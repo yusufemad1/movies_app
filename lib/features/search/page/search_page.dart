@@ -25,9 +25,11 @@ class SearchPage extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   color: Color(0xffC6C6C6),
                 ),
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Color(0xffC6C6C6),
+                prefixIcon: ImageIcon(
+                  AssetImage(
+                    'assets/image/search_icon.png',
+                  ),
+                  color: Colors.white,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25),
@@ -49,8 +51,7 @@ class SearchPage extends StatelessWidget {
             child: Column(
               children: [
                 Image(
-                  image:
-                      AssetImage('assets/image/Icon_no_search.png'),
+                  image: AssetImage('assets/image/Icon_no_search.png'),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
