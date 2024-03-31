@@ -9,7 +9,7 @@ class ApplicationThemeManager {
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        toolbarHeight: 120,
+        toolbarHeight: 60,
         iconTheme: IconThemeData(
           color: Colors.white,
         )),
