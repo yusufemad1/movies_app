@@ -17,11 +17,13 @@ class MovieDetails extends StatelessWidget {
           style: TextStyle(fontSize: 20),
         ),
       ),
-      body: Column(
-        children: [
-          DetailsWidget(),
-          RecomendedWidget(name: "More Like This",),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            DetailsWidget(),
+            RecomendedWidget(name: "More Like This",),
+          ],
+        ),
       ),
     );
   }
