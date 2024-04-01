@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/config/constants.dart';
+import 'package:movies_app/models/popular.dart';
 
 class DetailsWidget extends StatelessWidget {
-  const DetailsWidget({super.key});
+  const DetailsWidget({super.key, required this.popular});
+
+  final Popular popular;
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +13,10 @@ class DetailsWidget extends StatelessWidget {
       children: [
         Stack(
           children: [
-            Image.asset("assets/image/Image.png"),
+            Image.network(
+              '${Constants.urlimage}${popular.background}',
+              fit: BoxFit.cover,
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 70),
               child: Align(
@@ -27,7 +34,7 @@ class DetailsWidget extends StatelessWidget {
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "Dora and the lost city of gold",
+              popular.title,
               style: TextStyle(fontSize: 18, color: Colors.white),
             ),
           ),
@@ -37,7 +44,7 @@ class DetailsWidget extends StatelessWidget {
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "2019  PG-13  2h 7m",
+              popular.date,
               style: TextStyle(fontSize: 10, color: Color(0xffB5B4B4)),
             ),
           ),
@@ -53,8 +60,8 @@ class DetailsWidget extends StatelessWidget {
                   width: 130,
                   child: Stack(
                     children: [
-                      Image.asset(
-                        "assets/image/Image (1).png",
+                      Image.network(
+                        '${Constants.urlimage}${popular.poster}',
                         width: 130,
                         fit: BoxFit.cover,
                       ),
@@ -67,76 +74,80 @@ class DetailsWidget extends StatelessWidget {
               ),
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5, left: 5),
-                      child: Container(
-                        decoration: BoxDecoration(
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, ),
+                        child: Container(
+                          decoration: BoxDecoration(
 // color: Colors.red,
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(width: 1, color: Colors.grey),
-                        ),
-                        width: 65,
-                        height: 25,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Text("Action",
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 10,
-                              ),
-                              textAlign: TextAlign.center),
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(width: 1, color: Colors.grey),
+                          ),
+                          width: 65,
+                          height: 25,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Text("Action",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center),
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5, left: 5),
-                      child: Container(
-                        decoration: BoxDecoration(
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 5),
+                        child: Container(
+                          decoration: BoxDecoration(
 // color: Colors.red,
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(width: 1, color: Colors.grey),
-                        ),
-                        width: 65,
-                        height: 25,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Text("Action",
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 10,
-                              ),
-                              textAlign: TextAlign.center),
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(width: 1, color: Colors.grey),
+                          ),
+                          width: 65,
+                          height: 25,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Text("Action",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center),
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5, left: 5),
-                      child: Container(
-                        decoration: BoxDecoration(
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 5),
+                        child: Container(
+                          decoration: BoxDecoration(
 // color: Colors.red,
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(width: 1, color: Colors.grey),
-                        ),
-                        width: 65,
-                        height: 25,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Text("Action",
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 10,
-                              ),
-                              textAlign: TextAlign.center),
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(width: 1, color: Colors.grey),
+                          ),
+                          width: 65,
+                          height: 25,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Text("Action",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 10,
+                                ),
+                                textAlign: TextAlign.center),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:5,right: 135),
+                  padding: const EdgeInsets.only(top: 5,left: 10),
                   child: Container(
                     decoration: BoxDecoration(
 // color: Colors.red,
@@ -157,21 +168,34 @@ class DetailsWidget extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 10,),
-                  child: Text(
-                    " Having spent most of her life\n exploring the jungle, nothing could\n prepare Dora for her most dangerous\n adventure yet — high school.\n",
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey,
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    left: 10
+                  ),
+                  child: Container(
+                    width: 250,
+                    child: Text(
+                      popular.description,
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20, right: 150),
+                  padding: const EdgeInsets.only(top: 5,left: 10),
                   child: Row(
+
                     children: [
                       Image.asset("assets/image/star-2.png"),
-                      Text("7.7",style: TextStyle(color: Colors.white,fontSize: 17),)
+                      SizedBox(width: 6,),
+                      Text(
+                        popular.rate.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 17),
+                      )
                     ],
                   ),
                 )
@@ -182,4 +206,9 @@ class DetailsWidget extends StatelessWidget {
       ],
     );
   }
+// @override
+// void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+//   super.debugFillProperties(properties);
+//   properties.add(DiagnosticsProperty<Popular>('popular', popular));
+// }
 }

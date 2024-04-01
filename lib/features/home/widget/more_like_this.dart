@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/config/constants.dart';
+import 'package:movies_app/models/popular.dart';
 
-class RecomendedWidget extends StatelessWidget {
-   RecomendedWidget({super.key,required this.snapshot,});
+class MoreLikeThis extends StatelessWidget {
+  MoreLikeThis({super.key, required this.snapshot,});
   final AsyncSnapshot snapshot;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,7 +20,7 @@ class RecomendedWidget extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Recomended",
+                  'More Like This' ,
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.white,
@@ -29,37 +29,33 @@ class RecomendedWidget extends StatelessWidget {
               ),
             ),
             CarouselSlider.builder(
-              itemCount: 19,
-              options: CarouselOptions(
-                  viewportFraction: 0.3,
-                  initialPage: 1,
-                  enableInfiniteScroll: false,
-                  enlargeFactor: 1,
-                  height: 190),
+                itemCount: 10,
+                options: CarouselOptions(
+                    viewportFraction: 0.3,
+                    initialPage: 1,
+                    enableInfiniteScroll: false,
+                    enlargeFactor: 1,
+                    height: 190),
                 itemBuilder:  (context, itemIndex, pageViewIndex)  {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: 100,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: 5.0,
-                      ),
-                      decoration: BoxDecoration(color: Color(0xff343534)),
-                      child: Stack(
-                        children: [
-                          Image.network(
-                            '${Constants.urlimage}${snapshot.data[itemIndex]
-                                .poster}',
-                            width: MediaQuery.of(context).size.width,
-                            height: 130,
-                            fit: BoxFit.cover,
-                          ),
-                          Image.asset(
-                            "assets/image/icon_add.png",
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            child: Row(
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        width: 100,
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 5.0,
+                        ),
+                        decoration: BoxDecoration(color: Color(0xff343534)),
+                        child: Stack(
+                          children: [
+                            Image.network(
+                        '${Constants.urlimage}${snapshot.data[itemIndex]
+                            .poster}',
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                            Image.asset(
+                              "assets/image/icon_add.png",
+                            ),
+                            Row(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
@@ -75,46 +71,43 @@ class RecomendedWidget extends StatelessWidget {
                                   child: Align(
                                       alignment: Alignment.bottomLeft,
                                       child: Text(
-                                        '${snapshot.data[itemIndex].rate.toString()}',
+                                        "7.7",
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 10),
                                       )),
                                 )
                               ],
                             ),
-                          ),
-                          Positioned(
-                            bottom: 22,
-                            left: 5,
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Text(
-                                '${snapshot.data[itemIndex].title}',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 10),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            child: Padding(
+                            Padding(
                               padding:
-                                  const EdgeInsets.only(bottom: 10, left: 5),
+                              const EdgeInsets.only(bottom: 22, left: 5),
                               child: Align(
                                 alignment: Alignment.bottomLeft,
                                 child: Text(
-                                  '${snapshot.data[itemIndex].date}',
+                                  'Deadpool 2',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(bottom: 10, left: 5),
+                              child: Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Text(
+                                  '2018  R  1h 59m',
                                   style: TextStyle(
                                       color: Color(0xffB5B4B4), fontSize: 8),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );
-              })
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                })
           ],
         ),
       ),

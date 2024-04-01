@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/config/constants.dart';
 import 'package:movies_app/features/home/page/movie_details.dart';
 
 class ReleasesWidget extends StatelessWidget {
-  const ReleasesWidget({super.key});
+  const ReleasesWidget({super.key, required this.snapshot});
+  final AsyncSnapshot snapshot;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +28,15 @@ class ReleasesWidget extends StatelessWidget {
               ),
             ),
           ),
-          CarouselSlider(
+          CarouselSlider.builder(
+            itemCount: 19,
             options: CarouselOptions(
                 viewportFraction: 0.3,
                 initialPage: 1,
                 enableInfiniteScroll: false,
                 enlargeFactor: 1,
                 height: 130),
-            items: [1, 2, 3, 4, 5, 7, 7, 8, 9].map((i) {
+            itemBuilder:  (context, itemIndex, pageViewIndex) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
@@ -44,8 +47,9 @@ class ReleasesWidget extends StatelessWidget {
                     decoration: BoxDecoration(),
                     child: Stack(
                       children: [
-                          Image.asset(
-                            "assets/image/image_Recomended.png",
+                          Image.network(
+                            '${Constants.urlimage}${snapshot.data[itemIndex]
+                                .poster}',
                             width: MediaQuery.of(context).size.width,
                           ),
                         Image.asset(
@@ -56,7 +60,7 @@ class ReleasesWidget extends StatelessWidget {
                   );
                 },
               );
-            }).toList(),
+            }
           ),
         ],
       ),

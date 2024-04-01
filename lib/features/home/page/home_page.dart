@@ -17,21 +17,63 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<List<Popular>> PopularMovies;
+  late Future<List<Popular>> NewReleases;
+  late Future<List<Popular>> Recomended;
 
   @override
   void initState() {
     super.initState();
     PopularMovies = Apimanger().getPopular();
+    NewReleases= Apimanger().getNewReleases();
+    Recomended= Apimanger().getReconended();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
+        body: SingleChildScrollView(
+          child: Column(
       children: [
+          SizedBox(
+            child: FutureBuilder(
+              future: PopularMovies,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                }else if(snapshot.hasData){
+                  // final data =snapshot.data;
+                  return  HomeWidget(snapshot:snapshot,);
+                }else{
+                  return Center(child: CircularProgressIndicator(),);
+                }
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 18, bottom: 20),
+            child: SizedBox(
+              child: FutureBuilder(
+                future: NewReleases,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(snapshot.error.toString()),
+                    );
+                  }else if(snapshot.hasData){
+                    // final data =snapshot.data;
+                    return  ReleasesWidget(snapshot: snapshot,);
+                  }else{
+                    return Center(child: CircularProgressIndicator(),);
+                  }
+                },
+              ),
+            ),
+          ),
         SizedBox(
           child: FutureBuilder(
-            future: PopularMovies,
+            future: Recomended,
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Center(
@@ -39,21 +81,15 @@ class _HomePageState extends State<HomePage> {
                 );
               }else if(snapshot.hasData){
                 // final data =snapshot.data;
-                return  HomeWidget(snapshot: snapshot,);
+                return  RecomendedWidget(snapshot: snapshot,);
               }else{
                 return Center(child: CircularProgressIndicator(),);
               }
             },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 18, bottom: 10),
-          child: ReleasesWidget(),
-        ),
-        RecomendedWidget(
-          name: "Recomended",
-        ),
       ],
-    ));
+    ),
+        ));
   }
 }

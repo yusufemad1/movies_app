@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         WatchListPage.routeName:(context) => WatchListPage(),
         BrowsePage.routeName:(context) => BrowsePage(),
         LayoutView.routeName:(context) => LayoutView(),
-        MovieDetails.routeNmae:(context) => MovieDetails(),
+        // MovieDetails.routeNmae:(context) => MovieDetails(),
 
       },
     );
