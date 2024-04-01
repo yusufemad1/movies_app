@@ -63,7 +63,7 @@ class HomeWidget extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 245,
+                    top: 240,
                     left: 165,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
