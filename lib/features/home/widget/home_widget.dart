@@ -12,22 +12,22 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, MovieDetails.routeNmae);
-      },
-      child: CarouselSlider.builder(
-          itemCount: 10,
-          options: CarouselOptions(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 3,
-            viewportFraction: 1,
-            autoPlay: true,
-            autoPlayInterval: Duration(seconds: 6),),
-          itemBuilder: (context, itemIndex, pageViewIndex) {
-            return Stack(
+    return CarouselSlider.builder(
+        itemCount: 10,
+        options: CarouselOptions(
+          height: MediaQuery
+              .of(context)
+              .size
+              .height / 3,
+          viewportFraction: 1,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 6),),
+        itemBuilder: (context, itemIndex, pageViewIndex) {
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(popular: snapshot.data[itemIndex]),));
+            },
+            child: Stack(
                 children: [
                   SizedBox(child: Image.network(
                       '${Constants.urlimage}${snapshot.data[itemIndex]
@@ -85,9 +85,9 @@ class HomeWidget extends StatelessWidget {
                     ),
                   ),
                 ],
-            );
-          }
-      ),
+            ),
+          );
+        }
     );
   }
 }

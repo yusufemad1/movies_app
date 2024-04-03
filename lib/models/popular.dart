@@ -3,20 +3,29 @@ class Popular {
   String poster;
   String title;
   String date;
+  String description;
+  double rate;
+  // List id;
 
   Popular({
     required this.background,
     required this.poster,
     required this.title,
     required this.date,
+    required this.description,
+    required this.rate,
+    // required this.id,
   });
 
   factory Popular.FromJson(Map<String, dynamic> json) {
     return Popular(
-      background: json["backdrop_path"],
-      poster: json["poster_path"],
-      title: json["title"],
-      date: json["release_date"],
+        background: json["backdrop_path"],
+        poster: json["poster_path"],
+        title: json["title"],
+        date: json["release_date"],
+        rate: json["vote_average"],
+        description: json["overview"]
+        // id: json["genre_ids"]
     );
   }
 }
