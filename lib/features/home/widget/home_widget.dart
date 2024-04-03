@@ -12,22 +12,22 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider.builder(
-        itemCount: 19,
-        options: CarouselOptions(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 3,
-          viewportFraction: 1,
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 6),),
-        itemBuilder: (context, itemIndex, pageViewIndex) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(popular: snapshot.data[itemIndex],),));
-            },
-            child: Stack(
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, MovieDetails.routeNmae);
+      },
+      child: CarouselSlider.builder(
+          itemCount: 10,
+          options: CarouselOptions(
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 3,
+            viewportFraction: 1,
+            autoPlay: true,
+            autoPlayInterval: Duration(seconds: 6),),
+          itemBuilder: (context, itemIndex, pageViewIndex) {
+            return Stack(
                 children: [
                   SizedBox(child: Image.network(
                       '${Constants.urlimage}${snapshot.data[itemIndex]
@@ -63,7 +63,7 @@ class HomeWidget extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 237,
+                    top: 245,
                     left: 165,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,9 +85,9 @@ class HomeWidget extends StatelessWidget {
                     ),
                   ),
                 ],
-            ),
-          );
-        }
+            );
+          }
+      ),
     );
   }
 }
