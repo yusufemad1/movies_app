@@ -15,80 +15,80 @@ class HomeWidget extends StatelessWidget {
     return CarouselSlider.builder(
         itemCount: 10,
         options: CarouselOptions(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height / 3,
+          height: MediaQuery.of(context).size.height / 3,
           viewportFraction: 1,
           autoPlay: true,
-          autoPlayInterval: Duration(seconds: 6),),
+          autoPlayInterval: Duration(seconds: 6),
+        ),
         itemBuilder: (context, itemIndex, pageViewIndex) {
           return GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(popular: snapshot.data[itemIndex]),));
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      MovieDetails(popular: snapshot.data[itemIndex]),
+                ),
+              );
             },
             child: Stack(
-                children: [
-                  SizedBox(child: Image.network(
-                      '${Constants.urlimage}${snapshot.data[itemIndex]
-                          .background}')),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 60),
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.play_circle_fill_rounded,
-                          color: Colors.white,
-                          size: 70,
-                        )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 100, left: 20),
-                    child: Container(
-                      height: 200,
-                      width: 130,
-                      child: Stack(
-                        children: [
-                          Image.network(
-                            '${Constants.urlimage}${snapshot.data[itemIndex]
-                                .poster}',
-                            width: 130,
-                            fit: BoxFit.cover,
-                          ),
-                          Image.asset(
-                            "assets/image/icon_add.png",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 245,
-                    left: 165,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                    child: Image.network(
+                        '${Constants.urlimage}${snapshot.data[itemIndex].background}')),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 60),
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.play_circle_fill_rounded,
+                        color: Colors.white,
+                        size: 70,
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 100, left: 20),
+                  child: Container(
+                    height: 200,
+                    width: 130,
+                    child: Stack(
                       children: [
-                        Text(
-                          '${snapshot.data[itemIndex].title}',
-                          style: TextStyle(
-                              fontSize: 14, color: Colors.white),
+                        Image.network(
+                          '${Constants.urlimage}${snapshot.data[itemIndex].poster}',
+                          width: 130,
+                          fit: BoxFit.cover,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4),
-                          child: Text(
-                            '${snapshot.data[itemIndex].date}',
-                            style:
-                            TextStyle(fontSize: 10, color: Color(0xffB5B4B4)),
-                          ),
+                        Image.asset(
+                          "assets/image/icon_add.png",
                         ),
                       ],
                     ),
                   ),
-                ],
+                ),
+                Positioned(
+                  top: 240,
+                  left: 165,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${snapshot.data[itemIndex].title}',
+                        style: TextStyle(fontSize: 14, color: Colors.white),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          '${snapshot.data[itemIndex].date}',
+                          style: TextStyle(
+                              fontSize: 10, color: Color(0xffB5B4B4)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           );
-        }
-    );
+        });
   }
 }
-

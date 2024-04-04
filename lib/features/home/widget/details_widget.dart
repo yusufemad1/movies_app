@@ -84,7 +84,6 @@ class DetailsWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 5, ),
                         child: Container(
                           decoration: BoxDecoration(
-// color: Colors.red,
                             borderRadius: BorderRadius.circular(4),
                             border: Border.all(width: 1, color: Colors.grey),
                           ),
@@ -173,12 +172,13 @@ class DetailsWidget extends StatelessWidget {
                     left: 10
                   ),
                   child: Container(
-                    width: 250,
+                    width: 210,
                     child: Text(
                       popular.description,
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
                         fontSize: 13,
                         color: Colors.grey,
                       ),
