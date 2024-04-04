@@ -19,7 +19,7 @@ class Popular {
 
   factory Popular.FromJson(Map<String, dynamic> json) {
     return Popular(
-        background: json["backdrop_path"],
+        background: json["backdrop_path"] ,
         poster: json["poster_path"],
         title: json["title"],
         date: json["release_date"],

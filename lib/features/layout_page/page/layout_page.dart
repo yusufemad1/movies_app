@@ -17,7 +17,7 @@ class _LayoutViewState extends State<LayoutView> {
   int currentIndex = 0;
   List screans = [
     HomePage(),
-    SearchPage(),
+    SearchPage( ),
     BrowsePage(),
     WatchListPage(),
 
