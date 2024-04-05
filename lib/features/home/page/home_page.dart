@@ -1,10 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/features/home/widget/home_loading.dart';
+import 'package:movies_app/features/home/widget/recomended_loding.dart';
 import 'package:movies_app/features/home/widget/home_widget.dart';
 import 'package:movies_app/features/home/widget/recomended_widget.dart';
+import 'package:movies_app/features/home/widget/releases_loading.dart';
 import 'package:movies_app/features/home/widget/releases_widget.dart';
 import 'package:movies_app/models/popular.dart';
 import 'package:movies_app/network/api_manager.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
   static String routeName = "HomePage";
@@ -46,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                   // final data =snapshot.data;
                   return  HomeWidget(snapshot:snapshot,);
                 }else{
-                  return Center(child: CircularProgressIndicator(),);
+                  return HomeLoading();
                 }
               },
             ),
@@ -65,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                     // final data =snapshot.data;
                     return  ReleasesWidget(snapshot: snapshot,);
                   }else{
-                    return Center(child: CircularProgressIndicator(),);
+                    return ReleasesLoading();
                   }
                 },
               ),
@@ -81,9 +85,10 @@ class _HomePageState extends State<HomePage> {
                 );
               }else if(snapshot.hasData){
                 // final data =snapshot.data;
-                return  RecomendedWidget(snapshot: snapshot,);
+                return RecomendedWidget(snapshot: snapshot,);
               }else{
-                return Center(child: CircularProgressIndicator(),);
+                return RecomendedLoading();
+
               }
             },
           ),
