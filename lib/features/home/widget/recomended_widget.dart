@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/config/constants.dart';
+import 'package:movies_app/features/watch_list/widgets/db.dart';
 import 'package:shimmer/shimmer.dart';
 
-class RecomendedWidget extends StatelessWidget {
+import '../../watch_list/widgets/boxes.dart';
+
+class RecomendedWidget extends StatefulWidget {
   RecomendedWidget({
     super.key,
     required this.snapshot,
@@ -11,6 +14,11 @@ class RecomendedWidget extends StatelessWidget {
 
   final AsyncSnapshot snapshot;
 
+  @override
+  State<RecomendedWidget> createState() => _RecomendedWidgetState();
+}
+
+class _RecomendedWidgetState extends State<RecomendedWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,13 +61,30 @@ class RecomendedWidget extends StatelessWidget {
                         child: Stack(
                           children: [
                             Image.network(
-                              '${Constants.urlimage}${snapshot.data[itemIndex].poster}',
+                              '${Constants.urlimage}${widget.snapshot.data[itemIndex].poster}',
                               width: MediaQuery.of(context).size.width,
                               height: 130,
                               fit: BoxFit.cover,
                             ),
-                            Image.asset(
-                              "assets/image/icon_add.png",
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  boxDb.put(
+                                      'key_${widget.snapshot.data[itemIndex].id}',
+                                      db(
+                                        photo: widget.snapshot.data[itemIndex]
+                                            .background,
+                                        name: widget
+                                            .snapshot.data[itemIndex].title,
+                                        date: widget
+                                            .snapshot.data[itemIndex].date,
+                                      ));
+                                  // print();
+                                });
+                              },
+                              child: Image.asset(
+                                "assets/image/icon_add.png",
+                              ),
                             ),
                             Positioned(
                               bottom: 0,
@@ -79,7 +104,7 @@ class RecomendedWidget extends StatelessWidget {
                                     child: Align(
                                         alignment: Alignment.bottomLeft,
                                         child: Text(
-                                          '${snapshot.data[itemIndex].rate.toString()}',
+                                          '${widget.snapshot.data[itemIndex].rate.toString()}',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 10),
@@ -94,7 +119,7 @@ class RecomendedWidget extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Text(
-                                  '${snapshot.data[itemIndex].title}',
+                                  '${widget.snapshot.data[itemIndex].title}',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 10),
                                 ),
@@ -107,7 +132,7 @@ class RecomendedWidget extends StatelessWidget {
                                 child: Align(
                                   alignment: Alignment.bottomLeft,
                                   child: Text(
-                                    '${snapshot.data[itemIndex].date}',
+                                    '${widget.snapshot.data[itemIndex].date}',
                                     style: TextStyle(
                                         color: Color(0xffB5B4B4), fontSize: 8),
                                   ),
