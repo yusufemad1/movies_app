@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/config/constants.dart';
+
 class WatchListWidget extends StatelessWidget {
-  const WatchListWidget({super.key});
+  String image;
+  String name;
+  String date;
+
+  WatchListWidget(
+      {super.key, required this.image, required this.name, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +19,18 @@ class WatchListWidget extends StatelessWidget {
           child: Row(
             children: [
               Stack(alignment: AlignmentDirectional.topStart, children: [
-                Image(
-                  image: AssetImage('assets/image/photo.png'),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context)
+                      .size
+                      .width *
+                      0.230,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage('${Constants.urlimage}${image}'),
+                          fit: BoxFit.cover)),
                 ),
+                // Image.network('${Constants.urlimage}${image}'),
                 ImageIcon(
                   AssetImage('assets/image/Icon awesome-bookmark.png'),
                   color: Color(0xFFFFBB3B),
@@ -30,30 +46,23 @@ class WatchListWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Alita Battle Angel',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
+                  Container(
+                    width: 160,
+                    child: Text(
+                      name,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 5,
                   ),
                   Text(
-                    '2019',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.6),
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'Rosa Salazar, Christoph Waltz',
+                    date,
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.6),
                       fontWeight: FontWeight.w400,
