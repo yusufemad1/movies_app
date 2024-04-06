@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/config/constants.dart';
+import 'boxes.dart';
 
-class WatchListWidget extends StatelessWidget {
+class WatchListWidget extends StatefulWidget {
   String image;
   String name;
   String date;
@@ -10,6 +11,11 @@ class WatchListWidget extends StatelessWidget {
   WatchListWidget(
       {super.key, required this.image, required this.name, required this.date});
 
+  @override
+  State<WatchListWidget> createState() => _WatchListWidgetState();
+}
+
+class _WatchListWidgetState extends State<WatchListWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +33,7 @@ class WatchListWidget extends StatelessWidget {
                       0.230,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage('${Constants.urlimage}${image}'),
+                          image: NetworkImage('${Constants.urlimage}${widget.image}'),
                           fit: BoxFit.cover)),
                 ),
                 // Image.network('${Constants.urlimage}${image}'),
@@ -49,7 +55,7 @@ class WatchListWidget extends StatelessWidget {
                   Container(
                     width: 160,
                     child: Text(
-                      name,
+                      widget.name,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: Colors.white,
@@ -62,7 +68,7 @@ class WatchListWidget extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    date,
+                    widget.date,
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.6),
                       fontWeight: FontWeight.w400,
