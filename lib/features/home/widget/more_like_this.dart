@@ -2,10 +2,20 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/config/constants.dart';
 import 'package:movies_app/models/popular.dart';
+import 'package:movies_app/network/api_manager.dart';
 
-class MoreLikeThis extends StatelessWidget {
-  MoreLikeThis({super.key, required this.snapshot,});
+class MoreLikeThis extends StatefulWidget {
+  MoreLikeThis({super.key, required this.snapshot,required this.popular});
   final AsyncSnapshot snapshot;
+  final Popular popular;
+
+  @override
+  State<MoreLikeThis> createState() => _MoreLikeThisState();
+}
+
+class _MoreLikeThisState extends State<MoreLikeThis> {
+  Apimanger apimanger = Apimanger();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,57 +58,61 @@ class MoreLikeThis extends StatelessWidget {
                         child: Stack(
                           children: [
                             Image.network(
-                        '${Constants.urlimage}${snapshot.data[itemIndex]
-                            .poster}',
-                              width: MediaQuery.of(context).size.width,
+                        '${Constants.urlimage}${Apimanger.morlist[itemIndex]['poster_path']}',
+                              width: MediaQuery.of(context).size.width,height: 130,
                             ),
                             Image.asset(
                               "assets/image/icon_add.png",
                             ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: 39, left: 5),
-                                  child: Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child: Image.asset(
-                                          "assets/image/icon_star.png")),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: 37, left: 5),
-                                  child: Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child: Text(
-                                        "7.7",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 10),
-                                      )),
-                                )
-                              ],
+                            Positioned(
+                              bottom: 0,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 39, left: 5),
+                                    child: Align(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Image.asset(
+                                            "assets/image/icon_star.png")),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 37, left: 5),
+                                    child: Align(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Text(
+                                          '${Apimanger.morlist[itemIndex]["vote_average"].toString()}',
+                                          style: TextStyle(
+                                              color: Colors.white, fontSize: 10),
+                                        )),
+                                  )
+                                ],
+                              ),
                             ),
-                            Padding(
-                              padding:
-                              const EdgeInsets.only(bottom: 22, left: 5),
+                            Positioned(
+                              bottom: 22,
+                              left: 5,
                               child: Align(
-                                alignment: Alignment.bottomLeft,
+                                alignment: Alignment.bottomCenter,
                                 child: Text(
-                                  'Deadpool 2',
+                                  '${Apimanger.morlist[itemIndex]["title"].toString()}',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 10),
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding:
-                              const EdgeInsets.only(bottom: 10, left: 5),
-                              child: Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  '2018  R  1h 59m',
-                                  style: TextStyle(
-                                      color: Color(0xffB5B4B4), fontSize: 8),
+                            Positioned(
+                              child: Padding(
+                                padding:
+                                const EdgeInsets.only(bottom: 10, left: 5),
+                                child: Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Text(
+                                    '${Apimanger.morlist[itemIndex]["release_date"].toString()}',
+                                    style: TextStyle(
+                                        color: Color(0xffB5B4B4), fontSize: 8),
+                                  ),
                                 ),
                               ),
                             ),

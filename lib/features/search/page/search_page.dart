@@ -22,7 +22,8 @@ class _SearchPageState extends State<SearchPage> {
 
   void search(String query) {
     apimanger.getSearch(query).then((results) {
-      setState(() {});
+      setState(() {
+      });
     });
   }
 

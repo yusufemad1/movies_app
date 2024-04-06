@@ -5,7 +5,7 @@ class Popular {
   String date;
   String description;
   double rate;
-  // List id;
+  List id;
 
   Popular({
     required this.background,
@@ -14,7 +14,7 @@ class Popular {
     required this.date,
     required this.description,
     required this.rate,
-    // required this.id,
+    required this.id,
   });
 
   factory Popular.FromJson(Map<String, dynamic> json) {
@@ -24,8 +24,8 @@ class Popular {
         title: json["title"],
         date: json["release_date"],
         rate: json["vote_average"],
-        description: json["overview"]
-        // id: json["genre_ids"]
+        description: json["overview"],
+        id: json["genre_ids"]
     );
   }
 }
