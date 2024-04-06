@@ -7,11 +7,11 @@ import 'package:movies_app/network/api_manager.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key, required this.snapshot});
-
   final AsyncSnapshot snapshot;
 
   @override
   Widget build(BuildContext context) {
+    Apimanger apimanger = Apimanger();
     return CarouselSlider.builder(
         itemCount: 10,
         options: CarouselOptions(
@@ -26,6 +26,7 @@ class HomeWidget extends StatelessWidget {
           return GestureDetector(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(popular: snapshot.data[itemIndex]),));
+              Apimanger.morlist.clear();
             },
             child: Stack(
                 children: [

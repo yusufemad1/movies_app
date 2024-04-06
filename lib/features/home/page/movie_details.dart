@@ -16,10 +16,11 @@ class MovieDetails extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
-  late Future<List<Popular>> morLikeThis;
+  late Future<void>morLikeThis;
   void initState() {
     super.initState();
-    morLikeThis= Apimanger().getMoreLikeThis();
+    morLikeThis = Apimanger().getMoreLikeThis(widget.popular.id);
+
   }
   @override
   Widget build(BuildContext context) {
@@ -36,16 +37,16 @@ class _MovieDetailsState extends State<MovieDetails> {
           children: [
             DetailsWidget(popular: widget.popular,),
             SizedBox(
-              child: FutureBuilder(
+              child:FutureBuilder(
                 future: morLikeThis,
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
                       child: Text(snapshot.error.toString()),
                     );
-                  }else if(snapshot.hasData){
+                  }else if(snapshot.connectionState == ConnectionState.done){
                     // final data =snapshot.data;
-                    return  MoreLikeThis(snapshot:snapshot,);
+                    return  MoreLikeThis(snapshot:snapshot,popular: widget.popular,);
                   }else{
                     return Center(child: CircularProgressIndicator(),);
                   }
