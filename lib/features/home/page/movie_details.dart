@@ -5,6 +5,8 @@ import 'package:movies_app/features/home/widget/recomended_widget.dart';
 import 'package:movies_app/models/popular.dart';
 import 'package:movies_app/network/api_manager.dart';
 
+import '../widget/recomended_loding.dart';
+
 class MovieDetails extends StatefulWidget {
   static String routeNmae = "MovieDetails";
   final Popular popular;
@@ -48,7 +50,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                     // final data =snapshot.data;
                     return  MoreLikeThis(snapshot:snapshot,popular: widget.popular,);
                   }else{
-                    return Center(child: CircularProgressIndicator(),);
+                    return RecomendedLoading();
                   }
                 },
               ),
