@@ -5,10 +5,18 @@ import 'package:movies_app/features/home/page/movie_details.dart';
 import 'package:movies_app/models/popular.dart';
 import 'package:movies_app/network/api_manager.dart';
 
-class HomeWidget extends StatelessWidget {
+import '../../watch_list/widgets/boxes.dart';
+import '../../watch_list/widgets/db.dart';
+
+class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key, required this.snapshot});
   final AsyncSnapshot snapshot;
 
+  @override
+  State<HomeWidget> createState() => _HomeWidgetState();
+}
+
+class _HomeWidgetState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     Apimanger apimanger = Apimanger();
@@ -25,13 +33,13 @@ class HomeWidget extends StatelessWidget {
         itemBuilder: (context, itemIndex, pageViewIndex) {
           return GestureDetector(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(popular: snapshot.data[itemIndex]),));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(popular: widget.snapshot.data[itemIndex]),));
               Apimanger.morlist.clear();
             },
             child: Stack(
                 children: [
                   SizedBox(child: Image.network(
-                      '${Constants.urlimage}${snapshot.data[itemIndex]
+                      '${Constants.urlimage}${widget.snapshot.data[itemIndex]
                           .background}')),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 60),
@@ -51,13 +59,30 @@ class HomeWidget extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.network(
-                            '${Constants.urlimage}${snapshot.data[itemIndex]
+                            '${Constants.urlimage}${widget.snapshot.data[itemIndex]
                                 .poster}',
                             width: 130,
                             fit: BoxFit.cover,
                           ),
-                          Image.asset(
-                            "assets/image/icon_add.png",
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                boxDb.put(
+                                    'key_${widget.snapshot.data[itemIndex].id}',
+                                    db(
+                                      photo: widget.snapshot.data[itemIndex]
+                                          .background,
+                                      name: widget
+                                          .snapshot.data[itemIndex].title,
+                                      date: widget
+                                          .snapshot.data[itemIndex].date,
+                                    ));
+                                // print();
+                              });
+                            },
+                            child: Image.asset(
+                              "assets/image/icon_add.png",
+                            ),
                           ),
                         ],
                       ),
@@ -70,14 +95,14 @@ class HomeWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${snapshot.data[itemIndex].title}',
+                          '${widget.snapshot.data[itemIndex].title}',
                           style: TextStyle(
                               fontSize: 14, color: Colors.white),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 4),
                           child: Text(
-                            '${snapshot.data[itemIndex].date}',
+                            '${widget.snapshot.data[itemIndex].date}',
                             style:
                             TextStyle(fontSize: 10, color: Color(0xffB5B4B4)),
                           ),

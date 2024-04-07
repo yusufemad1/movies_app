@@ -4,6 +4,9 @@ import 'package:movies_app/core/config/constants.dart';
 import 'package:movies_app/models/popular.dart';
 import 'package:movies_app/network/api_manager.dart';
 
+import '../../watch_list/widgets/boxes.dart';
+import '../../watch_list/widgets/db.dart';
+
 class MoreLikeThis extends StatefulWidget {
   MoreLikeThis({super.key, required this.snapshot,required this.popular});
   final AsyncSnapshot snapshot;
@@ -58,11 +61,25 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
                         child: Stack(
                           children: [
                             Image.network(
-                        '${Constants.urlimage}${Apimanger.morlist[itemIndex]['poster_path']}',
+                        '${Constants.urlimage}${Apimanger.morlist[itemIndex]["poster_path"]}',
                               width: MediaQuery.of(context).size.width,height: 130,
                             ),
-                            Image.asset(
-                              "assets/image/icon_add.png",
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  boxDb.put(
+                                      'key_${Apimanger.morlist[itemIndex]["genre_ids"]}',
+                                      db(
+                                        photo: Apimanger.morlist[itemIndex]["backdrop_path"],
+                                        name: Apimanger.morlist[itemIndex]["title"].toString(),
+                                        date: Apimanger.morlist[itemIndex]["release_date"].toString(),
+                                      ));
+                                  // print();
+                                });
+                              },
+                              child: Image.asset(
+                                "assets/image/icon_add.png",
+                              ),
                             ),
                             Positioned(
                               bottom: 0,

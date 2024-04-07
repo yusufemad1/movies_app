@@ -3,10 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/core/config/constants.dart';
 import 'package:movies_app/features/home/page/movie_details.dart';
 
-class ReleasesWidget extends StatelessWidget {
+import '../../watch_list/widgets/boxes.dart';
+import '../../watch_list/widgets/db.dart';
+
+class ReleasesWidget extends StatefulWidget {
   const ReleasesWidget({super.key, required this.snapshot});
   final AsyncSnapshot snapshot;
 
+  @override
+  State<ReleasesWidget> createState() => _ReleasesWidgetState();
+}
+
+class _ReleasesWidgetState extends State<ReleasesWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,12 +56,29 @@ class ReleasesWidget extends StatelessWidget {
                     child: Stack(
                       children: [
                           Image.network(
-                            '${Constants.urlimage}${snapshot.data[itemIndex]
+                            '${Constants.urlimage}${widget.snapshot.data[itemIndex]
                                 .poster}',
                             width: MediaQuery.of(context).size.width,
                           ),
-                        Image.asset(
-                          "assets/image/icon_add.png",
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              boxDb.put(
+                                  'key_${widget.snapshot.data[itemIndex].id}',
+                                  db(
+                                    photo: widget.snapshot.data[itemIndex]
+                                        .background,
+                                    name: widget
+                                        .snapshot.data[itemIndex].title,
+                                    date: widget
+                                        .snapshot.data[itemIndex].date,
+                                  ));
+                              // print();
+                            });
+                          },
+                          child: Image.asset(
+                            "assets/image/icon_add.png",
+                          ),
                         ),
                       ],
                     ),
