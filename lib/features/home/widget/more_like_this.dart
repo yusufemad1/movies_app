@@ -42,7 +42,7 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
               ),
             ),
             CarouselSlider.builder(
-                itemCount: 10,
+                itemCount: Apimanger.morlist.length,
                 options: CarouselOptions(
                     viewportFraction: 0.3,
                     initialPage: 1,
