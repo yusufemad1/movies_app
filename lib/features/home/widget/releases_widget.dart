@@ -53,34 +53,39 @@ class _ReleasesWidgetState extends State<ReleasesWidget> {
                       horizontal: 5.0,
                     ),
                     decoration: BoxDecoration(),
-                    child: Stack(
-                      children: [
-                          Image.network(
-                            '${Constants.urlimage}${widget.snapshot.data[itemIndex]
-                                .poster}',
-                            width: MediaQuery.of(context).size.width,
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(popular: widget.snapshot.data[itemIndex]),));
+                      },
+                      child: Stack(
+                        children: [
+                            Image.network(
+                              '${Constants.urlimage}${widget.snapshot.data[itemIndex]
+                                  .poster}',
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                boxDb.put(
+                                    'key_${widget.snapshot.data[itemIndex].id}',
+                                    db(
+                                      photo: widget.snapshot.data[itemIndex]
+                                          .background,
+                                      name: widget
+                                          .snapshot.data[itemIndex].title,
+                                      date: widget
+                                          .snapshot.data[itemIndex].date,
+                                    ));
+                                // print();
+                              });
+                            },
+                            child: Image.asset(
+                              "assets/image/icon_add.png",
+                            ),
                           ),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              boxDb.put(
-                                  'key_${widget.snapshot.data[itemIndex].id}',
-                                  db(
-                                    photo: widget.snapshot.data[itemIndex]
-                                        .background,
-                                    name: widget
-                                        .snapshot.data[itemIndex].title,
-                                    date: widget
-                                        .snapshot.data[itemIndex].date,
-                                  ));
-                              // print();
-                            });
-                          },
-                          child: Image.asset(
-                            "assets/image/icon_add.png",
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },
