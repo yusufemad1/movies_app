@@ -28,16 +28,16 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     PopularMovies = Apimanger().getPopular();
-    NewReleases= Apimanger().getNewReleases();
-    Recomended= Apimanger().getReconended();
+    NewReleases = Apimanger().getNewReleases();
+    Recomended = Apimanger().getReconended();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-          child: Column(
-      children: [
+      child: Column(
+        children: [
           SizedBox(
             child: FutureBuilder(
               future: PopularMovies,
@@ -46,10 +46,12 @@ class _HomePageState extends State<HomePage> {
                   return Center(
                     child: Text(snapshot.error.toString()),
                   );
-                }else if(snapshot.hasData){
+                } else if (snapshot.hasData) {
                   // final data =snapshot.data;
-                  return  HomeWidget(snapshot:snapshot,);
-                }else{
+                  return HomeWidget(
+                    snapshot: snapshot,
+                  );
+                } else {
                   return HomeLoading();
                 }
               },
@@ -65,36 +67,39 @@ class _HomePageState extends State<HomePage> {
                     return Center(
                       child: Text(snapshot.error.toString()),
                     );
-                  }else if(snapshot.hasData){
+                  } else if (snapshot.hasData) {
                     // final data =snapshot.data;
-                    return  ReleasesWidget(snapshot: snapshot,);
-                  }else{
+                    return ReleasesWidget(
+                      snapshot: snapshot,
+                    );
+                  } else {
                     return ReleasesLoading();
                   }
                 },
               ),
             ),
           ),
-        SizedBox(
-          child: FutureBuilder(
-            future: Recomended,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text(snapshot.error.toString()),
-                );
-              }else if(snapshot.hasData){
-                // final data =snapshot.data;
-                return RecomendedWidget(snapshot: snapshot,);
-              }else{
-                return RecomendedLoading();
-
-              }
-            },
+          SizedBox(
+            child: FutureBuilder(
+              future: Recomended,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                } else if (snapshot.hasData) {
+                  // final data =snapshot.data;
+                  return RecomendedWidget(
+                    snapshot: snapshot,
+                  );
+                } else {
+                  return RecomendedLoading();
+                }
+              },
+            ),
           ),
-        ),
-      ],
-    ),
-        ));
+        ],
+      ),
+    ));
   }
 }

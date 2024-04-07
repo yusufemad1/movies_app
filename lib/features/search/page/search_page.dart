@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/config/constants.dart';
 import 'package:movies_app/network/api_manager.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SearchPage extends StatefulWidget {
   static String routeName = "SearchPage";
@@ -81,65 +82,68 @@ class _SearchPageState extends State<SearchPage> {
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {},
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: 20),
-                                  height: 90,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(20, 20, 20, 1),
-                                    border: Border(
-                                      bottom: BorderSide(
-                                          width: 1, color: Colors.grey),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 30, bottom: 10),
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.4,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      'https://image.tmdb.org/t/p/w500${Apimanger.searchresult[index]['poster_path']}'),
-                                                  fit: BoxFit.fill)),
-                                        ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                                  child: Container(
+                                    margin: EdgeInsets.only(bottom: 20,),
+                                    height: 90,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(20, 20, 20, 1),
+                                      border: Border(
+                                        bottom: BorderSide(
+                                            width: 1, color: Colors.grey),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 15,top: 15),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              width: 170,
-                                              child: Text(
-                                                Apimanger.searchresult[index]
-                                                ['title'],
-                                                maxLines: 2,
-                                                overflow: TextOverflow.clip,
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: Colors.white,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 15, bottom: 10),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.4,
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        'https://image.tmdb.org/t/p/w500${Apimanger.searchresult[index]['poster_path']}'),
+                                                    fit: BoxFit.fill)),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 15,top: 15),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: 170,
+                                                child: Text(
+                                                  Apimanger.searchresult[index]
+                                                  ['title'],
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.clip,
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Text(
-                                              Apimanger.searchresult[index]
-                                              ['release_date'],
-                                              style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 13
+                                              Text(
+                                                Apimanger.searchresult[index]
+                                                ['release_date'],
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 13
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
@@ -147,9 +151,70 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                         );
                       } else {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.amber,
+                        return Shimmer.fromColors(
+                          baseColor: Colors.grey.shade300,
+                          highlightColor: Colors.grey.shade100,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 25),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 30,
+                                    top: 20,
+                                    bottom: 20,
+                                  ),
+                                  child: Container(
+                                    height: 90,
+                                    width: 160,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffC6C6C6),
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 10,
+                                        top: 10,
+                                        bottom: 10,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 8,left: 3),
+                                            child: Container(
+                                              height: 10,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xffC6C6C6),
+                                                borderRadius: BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 8,left: 3),
+                                            child: Container(
+                                              height: 10,
+                                              width: 40,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xffC6C6C6),
+                                                borderRadius: BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       }

@@ -5,23 +5,29 @@ import 'package:movies_app/features/home/widget/recomended_widget.dart';
 import 'package:movies_app/models/popular.dart';
 import 'package:movies_app/network/api_manager.dart';
 
+import '../widget/recomended_loding.dart';
+
 class MovieDetails extends StatefulWidget {
   static String routeNmae = "MovieDetails";
   final Popular popular;
 
-  const MovieDetails({super.key, required this.popular,});
+  const MovieDetails({
+    super.key,
+    required this.popular,
+  });
 
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
-  late Future<void>morLikeThis;
+  late Future<void> morLikeThis;
+
   void initState() {
     super.initState();
     morLikeThis = Apimanger().getMoreLikeThis(widget.popular.id);
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,20 +41,25 @@ class _MovieDetailsState extends State<MovieDetails> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            DetailsWidget(popular: widget.popular,),
+            DetailsWidget(
+              popular: widget.popular,
+            ),
             SizedBox(
-              child:FutureBuilder(
+              child: FutureBuilder(
                 future: morLikeThis,
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
                       child: Text(snapshot.error.toString()),
                     );
-                  }else if(snapshot.connectionState == ConnectionState.done){
+                  } else if (snapshot.connectionState == ConnectionState.done) {
                     // final data =snapshot.data;
-                    return  MoreLikeThis(snapshot:snapshot,popular: widget.popular,);
-                  }else{
-                    return Center(child: CircularProgressIndicator(),);
+                    return MoreLikeThis(
+                      snapshot: snapshot,
+                      popular: widget.popular,
+                    );
+                  } else {
+                    return RecomendedLoading();
                   }
                 },
               ),

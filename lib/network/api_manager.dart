@@ -54,7 +54,7 @@ class Apimanger {
   }
 
   Future getMoreLikeThis(List id) async {
-    String id1 = "${id[0]},${id[1]},";
+    String id1 = "${id.first},${id.lastOrNull}";
     final searchurl =
         "https://api.themoviedb.org/3/movie/$id1/similar?api_key=ab1f280e922b6b691e6dc48ebcc93693";
     final searchresponse = await http.get(Uri.parse(searchurl));
