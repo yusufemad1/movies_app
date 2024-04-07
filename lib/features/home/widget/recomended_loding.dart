@@ -47,7 +47,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 30,
@@ -58,7 +58,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 70,
@@ -69,7 +69,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 40,
@@ -79,7 +79,6 @@ class RecomendedLoading extends StatelessWidget {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -100,7 +99,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 30,
@@ -111,7 +110,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 70,
@@ -122,7 +121,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 40,
@@ -132,7 +131,6 @@ class RecomendedLoading extends StatelessWidget {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -153,7 +151,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 30,
@@ -164,7 +162,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 70,
@@ -175,7 +173,7 @@ class RecomendedLoading extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8,left: 3),
+                      padding: const EdgeInsets.only(top: 8, left: 3),
                       child: Container(
                         height: 10,
                         width: 40,
@@ -185,7 +183,6 @@ class RecomendedLoading extends StatelessWidget {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),

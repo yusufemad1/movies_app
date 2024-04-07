@@ -8,7 +8,8 @@ import '../../watch_list/widgets/boxes.dart';
 import '../../watch_list/widgets/db.dart';
 
 class MoreLikeThis extends StatefulWidget {
-  MoreLikeThis({super.key, required this.snapshot,required this.popular});
+  MoreLikeThis({super.key, required this.snapshot, required this.popular});
+
   final AsyncSnapshot snapshot;
   final Popular popular;
 
@@ -24,7 +25,7 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: Container(
-        height: MediaQuery.of(context).size.height/3.2,
+        height: MediaQuery.of(context).size.height / 3.2,
         color: Color(0xff282A28),
         child: Column(
           children: [
@@ -33,7 +34,7 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'More Like This' ,
+                  'More Like This',
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.white,
@@ -49,7 +50,7 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
                     enableInfiniteScroll: false,
                     enlargeFactor: 1,
                     height: 190),
-                itemBuilder:  (context, itemIndex, pageViewIndex)  {
+                itemBuilder: (context, itemIndex, pageViewIndex) {
                   return Builder(
                     builder: (BuildContext context) {
                       return Container(
@@ -61,8 +62,9 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
                         child: Stack(
                           children: [
                             Image.network(
-                        '${Constants.urlimage}${Apimanger.morlist[itemIndex]["poster_path"]}',
-                              width: MediaQuery.of(context).size.width,height: 130,
+                              '${Constants.urlimage}${Apimanger.morlist[itemIndex]["poster_path"]}',
+                              width: MediaQuery.of(context).size.width,
+                              height: 130,
                             ),
                             InkWell(
                               onTap: () {
@@ -70,9 +72,14 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
                                   boxDb.put(
                                       'key_${Apimanger.morlist[itemIndex]["genre_ids"]}',
                                       db(
-                                        photo: Apimanger.morlist[itemIndex]["backdrop_path"],
-                                        name: Apimanger.morlist[itemIndex]["title"].toString(),
-                                        date: Apimanger.morlist[itemIndex]["release_date"].toString(),
+                                        photo: Apimanger.morlist[itemIndex]
+                                            ["backdrop_path"],
+                                        name: Apimanger.morlist[itemIndex]
+                                                ["title"]
+                                            .toString(),
+                                        date: Apimanger.morlist[itemIndex]
+                                                ["release_date"]
+                                            .toString(),
                                       ));
                                   // print();
                                 });
@@ -101,7 +108,8 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
                                         child: Text(
                                           '${Apimanger.morlist[itemIndex]["vote_average"].toString()}',
                                           style: TextStyle(
-                                              color: Colors.white, fontSize: 10),
+                                              color: Colors.white,
+                                              fontSize: 10),
                                         )),
                                   )
                                 ],
@@ -122,7 +130,7 @@ class _MoreLikeThisState extends State<MoreLikeThis> {
                             Positioned(
                               child: Padding(
                                 padding:
-                                const EdgeInsets.only(bottom: 10, left: 5),
+                                    const EdgeInsets.only(bottom: 10, left: 5),
                                 child: Align(
                                   alignment: Alignment.bottomLeft,
                                   child: Text(

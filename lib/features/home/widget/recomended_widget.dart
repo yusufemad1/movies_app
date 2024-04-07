@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/core/config/constants.dart';
 import 'package:movies_app/features/home/page/movie_details.dart';
 import 'package:movies_app/features/watch_list/widgets/db.dart';
+import 'package:movies_app/network/api_manager.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../watch_list/widgets/boxes.dart';
@@ -60,8 +61,14 @@ class _RecomendedWidgetState extends State<RecomendedWidget> {
                         ),
                         decoration: BoxDecoration(color: Color(0xff343534)),
                         child: GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(popular: widget.snapshot.data[itemIndex]),));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MovieDetails(
+                                      popular: widget.snapshot.data[itemIndex]),
+                                ));
+                            Apimanger.morlist.clear();
                           },
                           child: Stack(
                             children: [
@@ -132,14 +139,15 @@ class _RecomendedWidgetState extends State<RecomendedWidget> {
                               ),
                               Positioned(
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(bottom: 10, left: 5),
+                                  padding: const EdgeInsets.only(
+                                      bottom: 10, left: 5),
                                   child: Align(
                                     alignment: Alignment.bottomLeft,
                                     child: Text(
                                       '${widget.snapshot.data[itemIndex].date}',
                                       style: TextStyle(
-                                          color: Color(0xffB5B4B4), fontSize: 8),
+                                          color: Color(0xffB5B4B4),
+                                          fontSize: 8),
                                     ),
                                   ),
                                 ),
