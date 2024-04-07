@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/watch_list/widgets/db.dart';
 import 'package:movies_app/features/watch_list/widgets/watech_list_widget.dart';
@@ -23,26 +24,36 @@ class _WatchListPageState extends State<WatchListPage> {
           SizedBox(
             height: 70,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Text(
-              'Watchlist',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                fontSize: 23,
+          FadeInRight(
+            delay: Duration(milliseconds: 300),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Text(
+                'Watchlist',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 23,
+                ),
               ),
             ),
           ),
-         Expanded(
-           child: ListView.builder(
-               shrinkWrap: true,
-               itemCount: boxDb.length,
-               itemBuilder: (context, index) {
-                 db Db = boxDb.getAt(index);
-                 return WatchListWidget(image:Db.photo ,name:Db.name ,date:Db.date,);
-               },),
-         ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: boxDb.length,
+              itemBuilder: (context, index) {
+                db Db = boxDb.getAt(index);
+                return FadeInRight(
+                    delay: Duration(milliseconds: 600),
+                    child: WatchListWidget(
+                  image: Db.photo,
+                  name: Db.name,
+                  date: Db.date,
+                ));
+              },
+            ),
+          ),
         ],
       ),
     );
