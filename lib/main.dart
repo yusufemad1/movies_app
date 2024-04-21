@@ -1,3 +1,4 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movies_app/features/browse/page/browse_page.dart';
@@ -6,12 +7,14 @@ import 'package:movies_app/features/search/page/search_page.dart';
 import 'package:movies_app/features/watch_list/page/watch_list_page.dart';
 import 'package:movies_app/features/watch_list/widgets/boxes.dart';
 import 'core/config/application_theme_manager.dart';
+import 'core/services/my_bloc_observer.dart';
 import 'features/home/page/home_page.dart';
 import 'features/home/page/movie_details.dart';
 import 'features/splash/splach_screen.dart';
 import 'features/watch_list/widgets/db.dart';
 
 void main() async {
+  Bloc.observer = MyBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(dbAdapter());
   boxDb = await Hive.openBox<db>('dbBox');

@@ -30,8 +30,8 @@ class _RecomendedWidgetState extends State<RecomendedWidget> {
         color: Color(0xff282A28),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 30, top: 20, bottom: 10),
+            const Padding(
+              padding: EdgeInsets.only(left: 30, top: 20, bottom: 10),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -56,10 +56,10 @@ class _RecomendedWidgetState extends State<RecomendedWidget> {
                     builder: (BuildContext context) {
                       return Container(
                         width: 100,
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                           horizontal: 5.0,
                         ),
-                        decoration: BoxDecoration(color: Color(0xff343534)),
+                        decoration: const BoxDecoration(color: Color(0xff343534)),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
