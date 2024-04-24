@@ -46,11 +46,43 @@ class _WatchListPageState extends State<WatchListPage> {
                 db Db = boxDb.getAt(index);
                 return FadeInRight(
                     delay: Duration(milliseconds: 600),
-                    child: WatchListWidget(
-                  image: Db.photo,
-                  name: Db.name,
-                  date: Db.date,
-                ));
+                    child: Stack(children: [
+                      WatchListWidget(
+                        image: Db.photo,
+                        name: Db.name,
+                        date: Db.date,
+                      ),
+                      Positioned(
+                        left:22 ,
+                        top: 10,
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              boxDb.deleteAt(index);
+                            });
+                          },
+                          child: ImageIcon(
+                            AssetImage('assets/image/Icon awesome-bookmark.png'),
+                            color: Color(0xFFFFBB3B),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left:22 ,
+                        top: 10,
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              boxDb.deleteAt(index);
+                            });
+                          },
+                          child: ImageIcon(
+                            AssetImage('assets/image/Icon awesome-check.png'),
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ]));
               },
             ),
           ),

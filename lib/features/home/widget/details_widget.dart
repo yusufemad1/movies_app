@@ -3,11 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/core/config/constants.dart';
 import 'package:movies_app/models/popular.dart';
 
-class DetailsWidget extends StatelessWidget {
+import '../../watch_list/widgets/boxes.dart';
+import '../../watch_list/widgets/db.dart';
+
+class DetailsWidget extends StatefulWidget {
   const DetailsWidget({super.key, required this.popular});
 
   final Popular popular;
 
+  @override
+  State<DetailsWidget> createState() => _DetailsWidgetState();
+}
+
+class _DetailsWidgetState extends State<DetailsWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,7 +25,7 @@ class DetailsWidget extends StatelessWidget {
           child: Stack(
             children: [
               Image.network(
-                '${Constants.urlimage}${popular.background}',
+                '${Constants.urlimage}${widget.popular.background}',
                 fit: BoxFit.cover,
               ),
               Padding(
@@ -40,7 +48,7 @@ class DetailsWidget extends StatelessWidget {
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
-                popular.title,
+                widget.popular.title,
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
@@ -53,7 +61,7 @@ class DetailsWidget extends StatelessWidget {
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
-                popular.date,
+                widget.popular.date,
                 style: TextStyle(fontSize: 10, color: Color(0xffB5B4B4)),
               ),
             ),
@@ -73,12 +81,26 @@ class DetailsWidget extends StatelessWidget {
                     child: Stack(
                       children: [
                         Image.network(
-                          '${Constants.urlimage}${popular.poster}',
+                          '${Constants.urlimage}${widget.popular.poster}',
                           width: 130,
                           fit: BoxFit.cover,
                         ),
-                        Image.asset(
-                          "assets/image/icon_add.png",
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              boxDb.put(
+                                  'key_${widget.popular.id}',
+                                  db(
+                                    photo: widget.popular.background,
+                                    name: widget.popular.title,
+                                    date: widget.popular.date,
+                                  ));
+                              // print();
+                            });
+                          },
+                          child: Image.asset(
+                            "assets/image/icon_add.png",
+                          ),
                         ),
                       ],
                     ),
@@ -185,7 +207,7 @@ class DetailsWidget extends StatelessWidget {
                     child: Container(
                       width: 210,
                       child: Text(
-                        popular.description,
+                        widget.popular.description,
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -205,7 +227,7 @@ class DetailsWidget extends StatelessWidget {
                           width: 6,
                         ),
                         Text(
-                          popular.rate.toString(),
+                          widget.popular.rate.toString(),
                           style: TextStyle(color: Colors.white, fontSize: 17),
                         )
                       ],
@@ -219,9 +241,4 @@ class DetailsWidget extends StatelessWidget {
       ],
     );
   }
-// @override
-// void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-//   super.debugFillProperties(properties);
-//   properties.add(DiagnosticsProperty<Popular>('popular', popular));
-// }
 }

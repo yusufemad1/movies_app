@@ -91,8 +91,9 @@ class _RecomendedWidgetState extends State<RecomendedWidget> {
                                           date: widget
                                               .snapshot.data[itemIndex].date,
                                         ));
-                                    // print();
                                   });
+
+
                                 },
                                 child: Image.asset(
                                   "assets/image/icon_add.png",

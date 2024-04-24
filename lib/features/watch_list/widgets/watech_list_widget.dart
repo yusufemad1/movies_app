@@ -24,28 +24,17 @@ class _WatchListWidgetState extends State<WatchListWidget> {
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
           child: Row(
             children: [
-              Stack(alignment: AlignmentDirectional.topStart, children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context)
-                      .size
-                      .width *
-                      0.230,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage('${Constants.urlimage}${widget.image}'),
-                          fit: BoxFit.cover)),
-                ),
-                // Image.network('${Constants.urlimage}${image}'),
-                ImageIcon(
-                  AssetImage('assets/image/Icon awesome-bookmark.png'),
-                  color: Color(0xFFFFBB3B),
-                ),
-                ImageIcon(
-                  AssetImage('assets/image/Icon awesome-check.png'),
-                  color: Colors.white,
-                ),
-              ]),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context)
+                    .size
+                    .width *
+                    0.230,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage('${Constants.urlimage}${widget.image}'),
+                        fit: BoxFit.cover)),
+              ),
               SizedBox(
                 width: 10,
               ),
